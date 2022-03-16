@@ -1,0 +1,21 @@
+---
+version: "3.7"
+
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=phosphorus1
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
